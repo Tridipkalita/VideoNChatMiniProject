@@ -27,6 +27,7 @@
             android:orientation="vertical">
 
             <ImageView android:id="@+id/imageView" android:layout_width="match_parent" android:layout_height="150dp" android:layout_gravity="center" android:layout_marginBottom="10dp" app:srcCompat="@drawable/calling_logo" />
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -34,7 +35,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/aladin"
                 android:gravity="center"
-                android:text="Connect Now"
+                android:text="Connect Kora"
                 android:textColor="@color/dark_blue"
                 android:textSize="50dp" />
 
@@ -71,8 +72,9 @@
                 android:background="@drawable/button_style"
                 android:text="Login"
                 android:textColor="@color/white"
-                app:backgroundTint="@drawable/button_style_2" />
- 
+                android:textSize="20sp"
+                app:backgroundTint="#1CB1C5" />
+
             <Button
                 android:id="@+id/createbtn"
                 android:layout_width="match_parent"
@@ -81,7 +83,8 @@
                 android:background="@drawable/button_style_2"
                 android:text=" create an account "
                 android:textColor="@color/white"
-                app:backgroundTint="@drawable/button_style_2" />
+                android:textSize="20sp"
+                app:backgroundTint="#FFC107" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

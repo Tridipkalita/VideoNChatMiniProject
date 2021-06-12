@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1095665127925",
+    "project_id": "connect-kora-df69d",
+    "storage_bucket": "connect-kora-df69d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095665127925:android:7fd8d9c6f395f2c0a110bc",
+        "android_client_info": {
+          "package_name": "com.example.videoconferencingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095665127925-vshq75hlirebmkur9u4o3ho80ngeh3vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-aJQAb_k7LBgU1gLIcUQ3iByiSH07Zc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095665127925-vshq75hlirebmkur9u4o3ho80ngeh3vv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
