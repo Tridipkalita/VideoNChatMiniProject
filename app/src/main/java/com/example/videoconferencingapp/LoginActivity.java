@@ -3,6 +3,7 @@ package com.example.videoconferencingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,10 +24,15 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
 
+    ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please wait.....");
 
         auth = FirebaseAuth.getInstance();
 
@@ -36,24 +42,32 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginbtn);
         signupBtn = findViewById(R.id.createbtn);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loginBtn.setOnClickListener((v) -> {
+            dialog.show();
 
-                String email,password;
+
+//            @Override
+//            public void onClick(View v){
+
+                String email, password;
                 email = emailBox.getText().toString();
-                password =passwordBox.getText().toString();
-                auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                password = passwordBox.getText().toString();
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                   if(task.isSuccessful()){
-                       Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
-                   }else{
-                       Toast.makeText(LoginActivity.this,task.getException().toString(), Toast.LENGTH_SHORT).show();
-                   }
+
+                        dialog.dismiss();
+
+                        if (task.isSuccessful()) {
+
+                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+//                       Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
-            }
+//            }
         });
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
