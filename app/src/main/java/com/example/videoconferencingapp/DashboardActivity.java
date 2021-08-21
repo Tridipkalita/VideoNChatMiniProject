@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
@@ -21,7 +23,8 @@ import java.util.Random;
 public class DashboardActivity extends AppCompatActivity {
 
     EditText secretCodeBox;
-    Button joinBtn, shareBtn, createBtn ;
+    Button joinBtn, shareBtn, createBtn,logoutBtn ;
+
 
 
     @Override
@@ -33,6 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         joinBtn = findViewById(R.id.joinBtn);
         shareBtn = findViewById(R.id.shareBtn);
         createBtn = findViewById(R.id.createBtn);
+        logoutBtn = findViewById(R.id.logoutBtn);
 
         URL serverURL;
 
@@ -92,6 +96,13 @@ public class DashboardActivity extends AppCompatActivity {
                     startActivity(Intent.createChooser(shareIntent, "Share via "));
                 }
 
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this , LoginActivity.class));
             }
         });
     }

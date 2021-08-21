@@ -46,9 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             dialog.show();
 
 
-//            @Override
-//            public void onClick(View v){
-
                 String email, password;
                 email = emailBox.getText().toString();
                 password = passwordBox.getText().toString();
@@ -60,14 +57,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
+                            Toast.makeText(LoginActivity.this, "Please Wait", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-//                       Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-//            }
         });
 
         signupBtn.setOnClickListener(new View.OnClickListener() {

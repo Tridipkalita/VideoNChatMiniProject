@@ -53,33 +53,7 @@ public class SignupActivity extends AppCompatActivity {
                  email = emailBox.getText().toString();
                  pass = passwordBox.getText().toString();
                  name = nameBox.getText().toString();
-//
-//                 User user = new User();
-//                 user.setEmail(email);
-//                 user.setPass(pass);
-//                 user.setName(name);
 
-
-
-//                 auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                     @Override
-//                     public void onComplete(@NonNull  Task<AuthResult> task) {
-//                         if(task.isSuccessful()){
-//                             database.collection("Users")
-//                                     .document().set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                 @Override
-//                                 public void onSuccess(Void unused) {
-//                                    startActivity(new Intent(SignupActivity.this ,LoginActivity.class));
-//                                 }
-//                             });
-//
-////                             Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
-//                        }else
-//                        {
-//                            Toast.makeText(SignupActivity.this,task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                         }
-//                 });
 
                 // Add document data with auto-generated id.
                 Map<String, Object> data = new HashMap<>();
@@ -94,17 +68,23 @@ public class SignupActivity extends AppCompatActivity {
                                     .document().set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
+                                    Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(SignupActivity.this ,LoginActivity.class));
                                 }
                             });
 
-//                             Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
                         }else
                         {
                             Toast.makeText(SignupActivity.this,task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+            }
+        });
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this , LoginActivity.class));
             }
         });
 
