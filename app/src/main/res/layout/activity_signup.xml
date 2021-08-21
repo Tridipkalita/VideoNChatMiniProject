@@ -4,16 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
     tools:context=".SignupActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +24,9 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                app:srcCompat="@drawable/calling_logo" />
+                android:layout_height="167dp"
+                android:layout_marginBottom="30dp"
+                app:srcCompat="@drawable/logo" />
 
             <TextView
                 android:id="@+id/textView"
@@ -41,17 +36,16 @@
                 android:fontFamily="@font/aladin"
                 android:gravity="center"
                 android:text="Connect Kora"
-                android:textColor="@color/dark_blue"
+                android:textColor="#E91E63"
                 android:textSize="50dp" />
 
             <EditText
                 android:id="@+id/namebox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/textbox"
-                android:drawableLeft="@drawable/user2"
-                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="10dp"
                 android:ems="10"
                 android:hint="Full Name"
                 android:inputType="textPersonName"
@@ -60,27 +54,25 @@
             <EditText
                 android:id="@+id/emailbox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/textbox"
+                android:layout_height="50dp"
                 android:drawableLeft="@drawable/mail"
                 android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
-                android:padding="10dp" />
+                android:padding="5dp" />
 
             <EditText
                 android:id="@+id/passwordbox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/textbox"
                 android:drawableLeft="@drawable/lock"
                 android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:padding="10dp" />
+                android:padding="0dp" />
 
             <Button
                 android:id="@+id/createbtn"
@@ -88,10 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_style_2"
-                android:text=" create an account "
+                android:text="Create Account"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                app:backgroundTint="#FFC107" />
+                app:backgroundTint="#F44336" />
 
             <Button
                 android:id="@+id/loginbtn"
@@ -99,10 +90,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_style"
-                android:text="Already have an account ?"
+                android:text="Already have an account?"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                app:backgroundTint="#1CB1C5" />
+                app:backgroundTint="#2196f3" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

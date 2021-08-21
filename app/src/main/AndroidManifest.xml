@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VideoConferencingApp">
         <activity android:name=".DashboardActivity"
-            android:label="Dashboard"/>
+            />
         <activity
             android:name=".SignupActivity"
-            android:label="New Account" />
+             />
         <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+             />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.NoActionBar.">
