@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailBox,passwordBox;
-    Button loginBtn , signupBtn;
+    Button loginBtn , signupBtn,forgotBtn;
 
 
     FirebaseAuth auth;
@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginBtn = findViewById(R.id.loginbtn);
         signupBtn = findViewById(R.id.createbtn);
+        forgotBtn = findViewById(R.id.forgotBtn);
 
         loginBtn.setOnClickListener((v) -> {
 
@@ -59,8 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                             dialog.dismiss();
 
                             if (task.isSuccessful()) {
-
                                 Toast.makeText(LoginActivity.this, "Welcome! Login Successful", Toast.LENGTH_SHORT).show();
+                                emailBox.getText().clear();
+                                passwordBox.getText().clear();
                                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 
                             } else {
@@ -75,6 +77,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this , SignupActivity.class));
+            }
+        });
+
+        forgotBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email;
+                email = emailBox.getText().toString();
+                if(email.isEmpty()){
+                    Toast.makeText(LoginActivity.this,"Please Enter Email",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    auth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(LoginActivity.this, "Email Sent!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
             }
         });
     }

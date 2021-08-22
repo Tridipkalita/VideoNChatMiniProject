@@ -10,13 +10,15 @@
     tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.376">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,5 +89,20 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/forgotBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Forgot Password?"
+        android:textAllCaps="false"
+        android:textColor="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:layout_constraintVertical_bias="0.232" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

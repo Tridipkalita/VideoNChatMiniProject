@@ -81,6 +81,9 @@ public class SignupActivity extends AppCompatActivity {
                                      @Override
                                      public void onSuccess(Void unused) {
                                          Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
+                                         emailBox.getText().clear();
+                                         nameBox.getText().clear();
+                                         passwordBox.getText().clear();
                                          startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                                      }
                                  });
