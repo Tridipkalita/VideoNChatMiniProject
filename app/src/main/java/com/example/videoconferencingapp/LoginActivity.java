@@ -43,28 +43,32 @@ public class LoginActivity extends AppCompatActivity {
         signupBtn = findViewById(R.id.createbtn);
 
         loginBtn.setOnClickListener((v) -> {
-            dialog.show();
-
 
                 String email, password;
                 email = emailBox.getText().toString();
                 password = passwordBox.getText().toString();
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                if((email.isEmpty()) && (password.isEmpty())){
+                    Toast.makeText(LoginActivity.this,"Email or Password Invalid",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dialog.show();
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        dialog.dismiss();
+                            dialog.dismiss();
 
-                        if (task.isSuccessful()) {
+                            if (task.isSuccessful()) {
 
-                            Toast.makeText(LoginActivity.this, "Please Wait", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                                Toast.makeText(LoginActivity.this, "Welcome! Login Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
 
-                        } else {
-                            Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
         });
 
         signupBtn.setOnClickListener(new View.OnClickListener() {

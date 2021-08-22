@@ -3,11 +3,13 @@ package com.example.videoconferencingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,10 +33,15 @@ public class SignupActivity extends AppCompatActivity {
 
     FirebaseFirestore database;
 
+    ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Please Wait");
 
         database = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -54,31 +61,36 @@ public class SignupActivity extends AppCompatActivity {
                  pass = passwordBox.getText().toString();
                  name = nameBox.getText().toString();
 
+                 if((email.isEmpty()) && (pass.isEmpty()) && (name.isEmpty())){
+                     Toast.makeText(SignupActivity.this,"Credentials Invalid",Toast.LENGTH_SHORT).show();
+                 }
+                 else {
+                     dialog.show();
+                     // Add document data with auto-generated id.
+                     Map<String, Object> data = new HashMap<>();
+                     data.put("name", name);
+                     data.put("Email", email);
 
-                // Add document data with auto-generated id.
-                Map<String, Object> data = new HashMap<>();
-                data.put("name", name);
-                data.put("Email", email);
+                     auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                         @Override
+                         public void onComplete(@NonNull Task<AuthResult> task) {
+                             dialog.dismiss();
+                             if (task.isSuccessful()) {
+                                 database.collection("Users")
+                                         .document().set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                     @Override
+                                     public void onSuccess(Void unused) {
+                                         Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
+                                         startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                     }
+                                 });
 
-                auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull  Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            database.collection("Users")
-                                    .document().set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(SignupActivity.this, "Account is created", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignupActivity.this ,LoginActivity.class));
-                                }
-                            });
-
-                        }else
-                        {
-                            Toast.makeText(SignupActivity.this,task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                             } else {
+                                 Toast.makeText(SignupActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                             }
+                         }
+                     });
+                 }
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
